@@ -2,7 +2,7 @@ document.getElementById("searchBtn").addEventListener("click", getNews);
 
 async function getNews() {
     const query = document.getElementById("searchInput").value.trim();
-    const apiKey = "15fffa71f1bfe42c89347243ca753017"; // Replace with your GNews API key
+    const apiKey = "c298a0df7d79fb4775ea954eabb6929b"; // Replace with your GNews API key
     const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&apikey=${apiKey}`;
 
     const resultsDiv = document.getElementById("results");

@@ -6,7 +6,7 @@ async function getNews() {
     const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&apikey=${apiKey}`;
 
     const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = "<p>Loading...</p>";
+    resultsDiv.innerHTML = "<p>Loading....</p>";
 
     try {
         const res = await fetch(url);

@@ -9,7 +9,7 @@ async function getNews() {
     return;
   }
 
-  const apikey = "pub_36c0c7e4d7c842b9a07f5d95de10db";
+  const apikey = "1fa9a44e504848dca88475dcdf820f47";
   const apiURL = `https://newsdata.io/api/1/news?q=${encodeURIComponent(query)}&language=en&apikey=${apikey}`;
 
   const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiURL)}`;

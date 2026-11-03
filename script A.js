@@ -10,7 +10,6 @@ async function getNews() {
         return;
     }
 
-    // Enter your new NewsData.io API key here
     const apikey = "pub_5409422ac3184261b9e8d82989bc3fee";
 
     const apiURL = `https://newsdata.io/api/1/latest?apikey=${apikey}&q=${encodeURIComponent(query)}&language=en`;
@@ -19,13 +18,16 @@ async function getNews() {
 
     try {
 
-        const response = await fetch(apiURL);
-        const data = await response.json();
+        const res = await fetch(apiURL);
+
+        console.log("HTTP Status:", res.status);
+
+        const data = await res.json();
 
         console.log("API Response:", data);
 
-        if (!response.ok || data.status !== "success") {
-            throw new Error(data.message || "Unable to fetch news.");
+        if (!res.ok || data.status !== "success") {
+            throw new Error(data.results?.message || data.message || "API request failed");
         }
 
         resultsDiv.innerHTML = "";
@@ -36,7 +38,6 @@ async function getNews() {
 
                 resultsDiv.innerHTML += `
                     <div class="news-item">
-
                         <h3>
                             <a href="${article.link}" target="_blank" rel="noopener noreferrer">
                                 ${article.title || "Untitled"}
@@ -48,7 +49,6 @@ async function getNews() {
                         <small>
                             Source: ${article.source_name || "Unknown"}
                         </small>
-
                     </div>
                 `;
 
@@ -62,9 +62,9 @@ async function getNews() {
 
     } catch (error) {
 
-        console.error("Error:", error);
+        console.error("News Error:", error);
 
-        resultsDiv.innerHTML = `<p>Error loading news: ${error.message}</p>`;
+        resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
 
     }
 }
